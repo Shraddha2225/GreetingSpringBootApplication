@@ -38,4 +38,13 @@ public class GreetingService implements IGreetingService {
         return greetingRepository.findById(id).orElseThrow(()->new GreetingException("No Record Available"));
 
     }
+
+    @Override
+    public Greeting updateGreeting(User user, Long id) {
+        if(!greetingRepository.existsById(id)) throw new GreetingException("Record Can Not Be Update");
+
+        String message=user.getFirstName() +" "+user.getLastName();
+        Greeting greeting=new Greeting(id,String.format(template,message));
+        return greetingRepository.save(greeting);
+    }
 }

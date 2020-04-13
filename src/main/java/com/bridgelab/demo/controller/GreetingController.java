@@ -38,6 +38,14 @@ public class GreetingController {
         return greetingService.getGreetingById(id);
     }
 
+    @GetMapping("/update/greeting")
+    public Greeting updateGreeting(@RequestParam(value="id")Long id,@RequestParam(value = "fname")String firstName,@RequestParam(value = "lname") String lastName){
+        User user=new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        return greetingService.updateGreeting(user,id);
+    }
+
     @PutMapping("/put/greeting")
     public ResponseEntity<Greeting> putGreeting(@RequestBody Greeting greeting){
         return new ResponseEntity<>(greeting, HttpStatus.OK);
