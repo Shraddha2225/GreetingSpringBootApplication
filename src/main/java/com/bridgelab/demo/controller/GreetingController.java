@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -27,8 +28,19 @@ public class GreetingController {
         return greetingService.addGreeting(user);
     }
 
+    @RequestMapping("/findAll/greeting")
+    public List<Greeting> findGreeting(){
+        return greetingService.getAllGreetings();
+    }
+
+    @RequestMapping(value = "/find/greeting/byId",method = RequestMethod.GET)
+    public Greeting findByIdGreeting(@RequestParam(value = "id") Long id){
+        return greetingService.getGreetingById(id);
+    }
+
     @PutMapping("/put/greeting")
     public ResponseEntity<Greeting> putGreeting(@RequestBody Greeting greeting){
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }
+
 }

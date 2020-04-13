@@ -14,6 +14,14 @@ public class Greeting {
     @Column(name = "message")
     private String message;
 
+    public Greeting() {
+    }
+
+    public Greeting(long Id,String message) {
+        this.Id=Id;
+        this.message=message;
+    }
+
     public long getId() {
         return Id;
     }

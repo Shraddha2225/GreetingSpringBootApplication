@@ -32,4 +32,10 @@ public class GreetingService implements IGreetingService {
     public List<Greeting> getAllGreetings() {
         return greetingRepository.findAll();
     }
+
+    @Override
+    public Greeting getGreetingById(Long id) {
+        return greetingRepository.findById(id).orElseThrow(()->new GreetingException("No Record Available"));
+
+    }
 }
